@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://4cm2jgja2hoe"]
+[gd_scene load_steps=8 format=3 uid="uid://4cm2jgja2hoe"]
 
 [ext_resource type="PackedScene" uid="uid://c7y3e716a5r2j" path="res://Assets/Scene/Prefab/car.tscn" id="1_x06g1"]
+[ext_resource type="PackedScene" uid="uid://cr1erhfaks82" path="res://Assets/Blend/TrackTest.glb" id="2_0v8cc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pkgw"]
 
@@ -43,6 +44,7 @@ points = PackedVector3Array(25.1042, -0.104167, 5.10417, -25.1042, -0.104167, -5
 [node name="Main" type="Node3D"]
 
 [node name="TrackPiece" type="Node3D" parent="."]
+visible = false
 
 [node name="Plane" type="MeshInstance3D" parent="TrackPiece"]
 mesh = SubResource("ArrayMesh_a200j")
@@ -55,9 +57,12 @@ physics_material_override = SubResource("PhysicsMaterial_d26yc")
 shape = SubResource("ConvexPolygonShape3D_l5da5")
 
 [node name="Car" parent="." instance=ExtResource("1_x06g1")]
-transform = Transform3D(-0.0336261, 0, -0.999434, 0, 1, 0, 0.999434, 0, -0.0336261, -18.6776, 0.682071, 1.02108)
+transform = Transform3D(-0.0336261, 0, -0.999434, 0, 1, 0, 0.999434, 0, -0.0336261, 14.3759, 0.682071, 1.02108)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 0.731925, 0.681385, 0, -0.681385, 0.731925, 0, 10.3323, 0)
+
+[node name="TrackTest" parent="." instance=ExtResource("2_0v8cc")]
+transform = Transform3D(-6.55671e-07, 0, 15, 0, 15, 0, -15, 0, -6.55671e-07, 0, 0, -60)
