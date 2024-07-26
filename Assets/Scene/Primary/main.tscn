@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://4cm2jgja2hoe"]
+[gd_scene load_steps=7 format=3 uid="uid://4cm2jgja2hoe"]
+
+[ext_resource type="PackedScene" uid="uid://c7y3e716a5r2j" path="res://Assets/Scene/Prefab/car.tscn" id="1_x06g1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pkgw"]
 
@@ -51,3 +53,11 @@ physics_material_override = SubResource("PhysicsMaterial_d26yc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TrackPiece/Plane/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_l5da5")
+
+[node name="Car" parent="." instance=ExtResource("1_x06g1")]
+transform = Transform3D(-0.0336261, 0, -0.999434, 0, 1, 0, 0.999434, 0, -0.0336261, -18.6776, 0.682071, 1.02108)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.731925, 0.681385, 0, -0.681385, 0.731925, 0, 10.3323, 0)
