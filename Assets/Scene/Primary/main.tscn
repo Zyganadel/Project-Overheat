@@ -1,11 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://4cm2jgja2hoe"]
+[gd_scene load_steps=3 format=3 uid="uid://4cm2jgja2hoe"]
 
 [ext_resource type="PackedScene" uid="uid://c7y3e716a5r2j" path="res://Assets/Scene/Prefab/car.tscn" id="1_x06g1"]
 [ext_resource type="PackedScene" uid="uid://unb0qj0w4wm4" path="res://Assets/Blend/TempTerrain.blend" id="3_tlx4k"]
-
-[sub_resource type="Curve" id="Curve_bt6da"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
-point_count = 1
 
 [node name="Main" type="Node3D"]
 
@@ -24,4 +20,3 @@ rearWheelFrictionReduc = 0.25
 brakeFrictionReduc = 1.5
 baseEnginePower = 150.0
 sdModifier = 1.25
-sdCurve = SubResource("Curve_bt6da")
