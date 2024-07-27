@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://c7y3e716a5r2j"]
 
 [ext_resource type="Script" path="res://Assets/Script/Car.cs" id="1_06ayy"]
-[ext_resource type="Texture2D" uid="uid://oogi5p3xcbwi" path="res://Assets/Blend/textures/Car.png" id="2_p7eeg"]
+[ext_resource type="Texture2D" uid="uid://8jqnshbptg02" path="res://Assets/Blend/textures/Car.png" id="2_p7eeg"]
 [ext_resource type="PackedScene" uid="uid://cqaeih7sc24qm" path="res://Assets/Scene/Prefab/tire_tracks.tscn" id="2_tjhiy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nrpam"]
@@ -240,8 +240,12 @@ size = Vector3(2, 0.499512, 5)
 
 [node name="Main" type="VehicleBody3D" node_paths=PackedStringArray("wheels")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-mass = 100.0
+mass = 500.0
 script = ExtResource("1_06ayy")
+baseWheelFriction = 2.0
+rearWheelFrictionReduc = 0.5
+brakeFrictionReduc = 1.0
+baseEnginePower = 300.0
 wheels = [NodePath("Wheel_LF"), NodePath("Wheel_RF"), NodePath("Wheel_LR"), NodePath("Wheel_RR")]
 
 [node name="Axle_F" type="MeshInstance3D" parent="."]
@@ -262,6 +266,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, 0, 0, 1, -0.95, 0.1, 3.5)
 use_as_traction = true
 use_as_steering = true
+wheel_roll_influence = 0.05
 wheel_rest_length = 0.25
 wheel_friction_slip = 1.0
 suspension_stiffness = 200.0
@@ -274,6 +279,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, 0, 0, 1, 0.95, 0.1, 3.5)
 use_as_traction = true
 use_as_steering = true
+wheel_roll_influence = 0.025
 wheel_rest_length = 0.25
 wheel_friction_slip = 0.8
 suspension_stiffness = 200.0
@@ -285,6 +291,7 @@ skeleton = NodePath("")
 [node name="Wheel_LR" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, 0, 0, 1, 0.95, 0.1, -0.75)
 use_as_traction = true
+wheel_roll_influence = 0.025
 wheel_rest_length = 0.25
 wheel_friction_slip = 0.8
 suspension_stiffness = 200.0
@@ -296,6 +303,7 @@ skeleton = NodePath("")
 [node name="Wheel_RR" type="VehicleWheel3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 0.1, -0.75)
 use_as_traction = true
+wheel_roll_influence = 0.025
 wheel_rest_length = 0.25
 wheel_friction_slip = 0.8
 suspension_stiffness = 200.0

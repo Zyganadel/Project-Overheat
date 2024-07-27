@@ -1,12 +1,14 @@
 using Godot;
 using SDTesting.Assets.Script;
+using System;
 using System.Collections.Generic;
 
 public partial class Car : VehicleBody3D
 {
-	[Export] float baseSteering { get; set; } = 0.75f;
+	[Export] float baseSteering { get; set; } = 0.5f;
 	float steering;
 	[Export] float baseWheelFriction = 0.9f;
+	[Export] float rearWheelFrictionReduc = 0.2f;
 	[Export] float brakeFrictionReduc = 0.3f;
 	[Export] float baseEnginePower { get; set; } = 150; // For gear 1.
 	float enginePower;
@@ -19,6 +21,7 @@ public partial class Car : VehicleBody3D
 
 	int gearIndex;
 	[Export] VehicleWheel3D[] wheels;
+	VehicleWheel3D rr, lr, rf, lf;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -38,6 +41,11 @@ public partial class Car : VehicleBody3D
 				if (node is VehicleWheel3D) { wheelList.Add((VehicleWheel3D)node); }
 			}
 			wheels = wheelList.ToArray();
+
+			lf = (VehicleWheel3D)GetNode("Wheel_LF");
+			rf = (VehicleWheel3D)GetNode("Wheel_RF");
+			rr = (VehicleWheel3D)GetNode("Wheel_RR");
+			lr = (VehicleWheel3D)GetNode("Wheel_LR");
 		}
 	}
 
@@ -78,10 +86,12 @@ public partial class Car : VehicleBody3D
 				Brake = brakeInput * brakePower;
 
 				// Make drifts work a bit nicer?
-				foreach (VehicleWheel3D wheel in wheels)
-				{
-					wheel.WheelFrictionSlip = baseWheelFriction - brakeInput * brakeFrictionReduc;
-				}
+				float rearFriction = baseWheelFriction - rearWheelFrictionReduc - brakeInput * brakeFrictionReduc;
+				float forwardFriction = baseWheelFriction - brakeInput * brakeFrictionReduc;
+				lf.WheelFrictionSlip = forwardFriction;
+				rf.WheelFrictionSlip = forwardFriction;
+				lr.WheelFrictionSlip = rearFriction;
+				rr.WheelFrictionSlip = rearFriction;
 
 				// Air control things here.
 			}
@@ -94,19 +104,21 @@ public partial class Car : VehicleBody3D
 		GearCheck();
 		GD.Print(LinearVelocity.Length());
 		GD.Print(GetRPM());
+		GripDebug();
 	}
 
 	void GearCheck()
 	{
-		currentGear = gears[gearIndex];
+		try { currentGear = gears[gearIndex]; } catch(IndexOutOfRangeException e) { currentGear = gears[0]; GD.PrintErr($"{e.GetType()} at gearcheck."); }
 
 		float speed = LinearVelocity.Length();
+		float RPM = GetRPM();
 
 		bool changed = false;
 
 		// Should we change gears?
-		if (speed > currentGear.upperTransitionSpeed) { gearIndex++; currentGear = gears[gearIndex]; changed = true; }
-		if (speed < currentGear.lowerTransitionSpeed) { gearIndex--; currentGear = gears[gearIndex]; changed = true; }
+		if (RPM > currentGear.upperTransitionSpeed) { gearIndex++; currentGear = gears[gearIndex]; changed = true; }
+		if (RPM < currentGear.lowerTransitionSpeed) { gearIndex--; currentGear = gears[gearIndex]; changed = true; }
 
 		if (changed)
 		{
@@ -131,5 +143,13 @@ public partial class Car : VehicleBody3D
 	void SDCheck(double delta)
 	{
 
+	}
+
+	void GripDebug()
+	{
+		foreach (VehicleWheel3D wheel in wheels)
+		{
+			GD.Print(wheel.GetSkidinfo());
+		}
 	}
 }
