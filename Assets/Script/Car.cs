@@ -35,8 +35,9 @@ public partial class Car : VehicleBody3D
 			List<VehicleWheel3D> wheelList = new List<VehicleWheel3D>();
 			foreach (Node3D node in GetChildren())
 			{
-				if (node is VehicleWheel3D) { wheelList.Add((VehicleWheel3D)node);}
+				if (node is VehicleWheel3D) { wheelList.Add((VehicleWheel3D)node); }
 			}
+			wheels = wheelList.ToArray();
 		}
 	}
 
@@ -116,10 +117,8 @@ public partial class Car : VehicleBody3D
 	float GetRPM()
 	{
 		float avgRpm = 0;
-		GD.Print(wheels.Length);
 		foreach (VehicleWheel3D wheel in wheels)
 		{
-			GD.Print(wheel.GetRpm());
 			avgRpm += wheel.GetRpm();
 		}
 		avgRpm = avgRpm / 4;
@@ -131,6 +130,6 @@ public partial class Car : VehicleBody3D
 	// Speed Drifts!!!
 	void SDCheck(double delta)
 	{
-		
+
 	}
 }
