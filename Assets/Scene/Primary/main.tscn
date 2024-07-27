@@ -208,8 +208,9 @@ physics_material_override = SubResource("PhysicsMaterial_d26yc")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TrackPiece/Plane/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_l5da5")
 
-[node name="Car" parent="." instance=ExtResource("1_x06g1")]
+[node name="Car" parent="." node_paths=PackedStringArray("wheels") instance=ExtResource("1_x06g1")]
 transform = Transform3D(-0.0336261, 0, -0.999434, 0, 1, 0, 0.999434, 0, -0.0336261, 14.3759, 0.682071, 1.02108)
+wheels = []
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
