@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://4cm2jgja2hoe"]
+[gd_scene load_steps=24 format=3 uid="uid://4cm2jgja2hoe"]
 
 [ext_resource type="PackedScene" uid="uid://c7y3e716a5r2j" path="res://Assets/Scene/Prefab/car.tscn" id="1_x06g1"]
 [ext_resource type="Texture2D" uid="uid://civa7217unjmb" path="res://Assets/Blend/TrackTest_Untitled.jpg" id="2_gwcrf"]
+[ext_resource type="PackedScene" uid="uid://unb0qj0w4wm4" path="res://Assets/Blend/TempTerrain.blend" id="3_tlx4k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pkgw"]
 
@@ -219,6 +220,7 @@ transform = Transform3D(1, 0, 0, 0, 0.731925, 0.681385, 0, -0.681385, 0.731925, 
 
 [node name="TrackTest" type="Node3D" parent="."]
 transform = Transform3D(-6.55671e-07, 0, 15, 0, 15, 0, -15, 0, -6.55671e-07, 0, 0, -60)
+visible = false
 
 [node name="Plane" type="MeshInstance3D" parent="TrackTest"]
 mesh = SubResource("ArrayMesh_wg5hi")
@@ -257,3 +259,6 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TrackTest/Plane_001/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_u1jwx")
+
+[node name="TempTerrain" parent="." instance=ExtResource("3_tlx4k")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
