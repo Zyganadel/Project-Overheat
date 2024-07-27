@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://4cm2jgja2hoe"]
+[gd_scene load_steps=6 format=3 uid="uid://4cm2jgja2hoe"]
 
 [ext_resource type="PackedScene" uid="uid://c7y3e716a5r2j" path="res://Assets/Scene/Prefab/car.tscn" id="1_x06g1"]
+[ext_resource type="Script" path="res://Assets/Script/UIMan.cs" id="3_plft2"]
 [ext_resource type="PackedScene" uid="uid://unb0qj0w4wm4" path="res://Assets/Blend/TempTerrain.blend" id="3_tlx4k"]
+[ext_resource type="Script" path="res://Assets/Script/HUD.cs" id="4_t57no"]
+[ext_resource type="Script" path="res://Assets/Script/UI/SpeedInfo.cs" id="5_l2ofh"]
 
 [node name="Main" type="Node3D"]
 
@@ -20,3 +23,43 @@ rearWheelFrictionReduc = 0.25
 brakeFrictionReduc = 1.5
 baseEnginePower = 150.0
 sdModifier = 1.25
+
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("hud")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_plft2")
+hud = NodePath("HUD")
+
+[node name="HUD" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_t57no")
+
+[node name="SpeedIndicator" type="Control" parent="UI/HUD"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_l2ofh")
+
+[node name="Speed" type="Label" parent="UI/HUD/SpeedIndicator"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Gear" type="Label" parent="UI/HUD/SpeedIndicator"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="RPM" type="Label" parent="UI/HUD/SpeedIndicator"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
