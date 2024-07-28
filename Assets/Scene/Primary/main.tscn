@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://c7y3e716a5r2j" path="res://Assets/Scene/Prefab/car.tscn" id="1_x06g1"]
 [ext_resource type="Script" path="res://Assets/Script/UI/UIMan.cs" id="3_okx64"]
-[ext_resource type="PackedScene" uid="uid://unb0qj0w4wm4" path="res://Assets/Blend/TempTerrain.blend" id="3_tlx4k"]
 [ext_resource type="PackedScene" uid="uid://4egbl3ojx470" path="res://Assets/Scene/UI/hud.tscn" id="4_6hp5f"]
+[ext_resource type="PackedScene" uid="uid://dan4facdmms6k" path="res://Assets/Blend/Map01.blend" id="4_ucmx5"]
 
 [node name="Main" type="Node3D"]
 
@@ -11,19 +11,6 @@
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 0.731925, 0.681385, 0, -0.681385, 0.731925, 0, 10.3323, 0)
-
-[node name="TempTerrain" parent="." instance=ExtResource("3_tlx4k")]
-transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
-
-[node name="Main" parent="." instance=ExtResource("1_x06g1")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 243, 0.6, 234)
-baseWheelFriction = 2.5
-rearWheelFrictionReduc = 0.25
-brakeFrictionReduc = 1.5
-baseEnginePower = 150.0
-sdModifier = 0.0
-heatPerRPMSecond = 25.0
-cooling = 1.0
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -37,3 +24,9 @@ hudScene = ExtResource("4_6hp5f")
 
 [node name="HUD" parent="UI" instance=ExtResource("4_6hp5f")]
 layout_mode = 1
+
+[node name="Map01" parent="." instance=ExtResource("4_ucmx5")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="Main2" parent="." instance=ExtResource("1_x06g1")]
+transform = Transform3D(-4.2222e-08, -0.258819, 0.965926, -1.13133e-08, 0.965926, 0.258819, -1, 0, -4.37114e-08, -1422, 1.1, 734)
