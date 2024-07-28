@@ -51,7 +51,7 @@ namespace SDTesting.Assets.Script.Managers
             Instance = this;
 
             // Other stuff.
-            UIHelpers.Init();
+            UIHelper.Init();
             inputManager = new UIInputManager(); AddChild(inputManager);
         }
 
@@ -73,7 +73,7 @@ namespace SDTesting.Assets.Script.Managers
 
         void MenuUpdate(MenuState state)
         {
-            UIHelpers.HideAll();
+            UIHelper.HideAll();
 
             switch (state)
             {
@@ -92,7 +92,7 @@ namespace SDTesting.Assets.Script.Managers
         /// <summary>
         /// A class for helper methods to be delegated.
         /// </summary>
-        private static class UIHelpers
+        private static class UIHelper
         {
             public static void Init()
             {
