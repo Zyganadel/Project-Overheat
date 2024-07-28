@@ -10,7 +10,7 @@ namespace SDTesting.Assets.Script.UI
         public void Update(int heat, float penalty)
         {
             heatLabel.Text = $"Heat: {heat}";
-            penaltyLabel.Text = $"Penalty: {MathF.Round(penalty, 3)}%";
+            penaltyLabel.Text = $"Penalty: {MathF.Round(penalty, 3)}";
         }
     }
 }
