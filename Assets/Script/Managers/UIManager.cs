@@ -1,7 +1,8 @@
 ﻿using Godot;
+using SDTesting.Assets.Script.UI;
 using System;
 
-namespace SDTesting.Assets.Script.UI
+namespace SDTesting.Assets.Script.Managers
 {
     public enum MenuState
     {
@@ -21,6 +22,8 @@ namespace SDTesting.Assets.Script.UI
     public partial class UIManager : Control
     {
         public static UIManager Instance { get; private set; }
+
+        UIInputManager inputManager;
 
         public MenuState State { get => state; set => state = value; }
         private MenuState state;
@@ -49,6 +52,7 @@ namespace SDTesting.Assets.Script.UI
 
             // Other stuff.
             UIHelpers.Init();
+            inputManager = new UIInputManager(); AddChild(inputManager);
         }
 
         public override void _UnhandledKeyInput(InputEvent keyEvent)
@@ -110,19 +114,66 @@ namespace SDTesting.Assets.Script.UI
 
             public static void MainHelper()
             {
-                Instance.mainMenu = (Control)Instance.mainMenuScene.Instantiate();
+                Control c = (Control)Instance.mainMenuScene.Instantiate();
+                Instance.mainMenu = c;
 
                 // Button things here.
             }
 
             public static void CarHelper()
             {
-                Instance.carSelect = (Control)Instance.carSelectScene.Instantiate();
+                Control c = (Control)Instance.carSelectScene.Instantiate();
+                Instance.carSelect = c;
 
                 // button things
+                Button backButton = (Button)c.GetNode("back");
+                backButton.Pressed += delegate { Instance.MenuUpdate(MenuState.Main); };
             }
 
+            public static void LevelHelper()
+            {
+                Control c = (Control)Instance.levelSelectScene.Instantiate();
+                Instance.levelSelect = c;
 
+                Button backButton = (Button)c.GetNode("back");
+                backButton.Pressed += delegate { Instance.MenuUpdate(MenuState.CarSelect); };
+            }
+
+            public static void PauseHelper()
+            {
+                Control c = (Control)Instance.pauseMenuScene.Instantiate();
+                Instance.pauseMenu = c;
+
+                Button backButton = (Button)c.GetNode("panel/container/mainmenu");
+                backButton.Pressed += delegate { Instance.MenuUpdate(MenuState.Main); };
+            }
+
+            public static void LeaderboardHelper()
+            {
+                Control c = (Control)Instance.leaderboardScene.Instantiate();
+                Instance.leaderboard = c;
+
+                Button backButton = (Button)c.GetNode("back");
+                backButton.Pressed += delegate { Instance.MenuUpdate(MenuState.Main); };
+            }
+
+            public static void OptionsHelper()
+            {
+                Control c = (Control)Instance.optionsMenuScene.Instantiate();
+                Instance.optionsMenu = c;
+
+                Button backButton = (Button)c.GetNode("back");
+                backButton.Pressed += delegate { Instance.MenuUpdate(MenuState.Main); };
+            }
+
+            public static void CreditsHelper()
+            {
+                Control c = (Control)Instance.creditsScene.Instantiate();
+                Instance.credits = c;
+
+                Button backButton = (Button)c.GetNode("back");
+                backButton.Pressed += delegate { Instance.MenuUpdate(MenuState.Main); };
+            }
         }
     }
 }
