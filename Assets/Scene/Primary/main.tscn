@@ -21,7 +21,8 @@ baseWheelFriction = 2.5
 rearWheelFrictionReduc = 0.25
 brakeFrictionReduc = 1.5
 baseEnginePower = 150.0
-sdModifier = 1.25
+sdModifier = 0.0
+heatPerRPMSecond = 25.0
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

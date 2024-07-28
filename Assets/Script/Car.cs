@@ -12,9 +12,9 @@ public partial class Car : VehicleBody3D
     [Export] float baseWheelFriction = 0.9f;
     [Export] float rearWheelFrictionReduc = 0.2f;
     [Export] float brakeFrictionReduc = 0.3f;
-    [Export] float heatBrakeMod = 0.3f;
+    [Export] float heatBrakePenalty = 0.3f;
     [Export] float baseEnginePower = 450; // For gear 1.
-    [Export] float heatPowerMod = 1;
+    [Export] float heatEnginePenalty = 0.3f;
     [Export] float baseBrakePower = 25;
     [Export] float sdModifier = 0.25f;
     float steering;
@@ -93,7 +93,8 @@ public partial class Car : VehicleBody3D
             {
                 GD.Print($"BP = {baseEnginePower}, EP = {enginePower}, FP = {finalEnginePower}");
 
-                finalEnginePower = enginePower * heatPowerMod;
+                float finalHeatPenalty = Mathf.Clamp(heatEnginePenalty * excessHeat, 0, 1);
+                finalEnginePower = enginePower * (1 - finalHeatPenalty);
 
                 EngineForce = accelInput * finalEnginePower;
             }
@@ -105,8 +106,8 @@ public partial class Car : VehicleBody3D
                 float brakeFrictionReduc = this.brakeFrictionReduc;
 
                 // Handle overheating.
-                brakeFrictionReduc += heatBrakeMod * excessHeat;
-                brakePower = baseBrakePower * (1 - heatBrakeMod * excessHeat);
+                brakeFrictionReduc += heatBrakePenalty * excessHeat;
+                brakePower = baseBrakePower * (1 - heatBrakePenalty * excessHeat);
 
                 Brake = brakeInput * brakePower;
 
@@ -128,6 +129,7 @@ public partial class Car : VehicleBody3D
     {
         GearCheck();
         GD.Print($"RPM is {GetRPM()}, speed is {LinearVelocity.Length()}");
+        HeatTick(delta);
 
         // Hud updates, may need to be moved eventually.
         HUD.Instance.UpdateSpeed(LinearVelocity.Length(), gearIndex, GetRPM());
