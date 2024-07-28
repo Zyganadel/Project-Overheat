@@ -24,7 +24,7 @@ namespace SDTesting.Assets.Script.UI
             int speedInt, gearInt, rpmInt;
             speedInt = (int)(speed * 3.6); // Convert to kph from m/s
             gearInt = gear + 1; // Convert from index to normie readable number.
-            rpmInt = (int)rpm;
+            rpmInt = (int)(rpm * 15 + 500);
 
             speedInfo.Update(speedInt, gearInt, rpmInt);
         }

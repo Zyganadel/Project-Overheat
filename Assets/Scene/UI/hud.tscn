@@ -17,6 +17,7 @@ heatInfo = NodePath("HeatIndicator")
 
 [node name="SpeedIndicator" type="Control" parent="." node_paths=PackedStringArray("speedLabel", "gearLabel", "rpmLabel")]
 layout_mode = 1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -52,6 +53,7 @@ text = "Test"
 
 [node name="HeatIndicator" type="Control" parent="." node_paths=PackedStringArray("heatLabel", "penaltyLabel")]
 layout_mode = 1
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -50.0

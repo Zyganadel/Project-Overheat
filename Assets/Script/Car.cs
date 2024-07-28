@@ -179,6 +179,7 @@ public partial class Car : VehicleBody3D
         if (Brake != 0) { TickBrake(); }
         TickEngine();
         currentHeat -= (float)(cooling * delta);
+        currentHeat = Mathf.Clamp(currentHeat, 0, float.MaxValue);
 
         // Now calculate whether or not any adverse effects should happen.
         float tempExcess = (currentHeat - 50) / 50;
