@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://b5sru4focdyby"]
+
+[node name="mainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="solidcolour" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="MenuGraphicThingy" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.2
+anchor_right = 0.7
+anchor_bottom = 0.8
+
+[node name="container" type="VBoxContainer" parent="panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.2
+anchor_right = 0.7
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="play" type="Button" parent="panel/container"]
+layout_mode = 2
+text = "Play"
+
+[node name="leaderboards" type="Button" parent="panel/container"]
+layout_mode = 2
+text = "Leaderboards"
+
+[node name="options" type="Button" parent="panel/container"]
+layout_mode = 2
+text = "Options"
+
+[node name="credits" type="Button" parent="panel/container"]
+layout_mode = 2
+text = "Credits"
+
+[node name="quit" type="Button" parent="panel/container"]
+layout_mode = 2
+text = "Quit"
