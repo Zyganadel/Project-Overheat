@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 
 namespace SDTesting.Assets.Script.UI
 {
@@ -7,6 +7,7 @@ namespace SDTesting.Assets.Script.UI
         public static HUD Instance { get; private set; }
 
         [Export] SpeedInfo speedInfo;
+        [Export] HeatInfo heatInfo;
 
         public override void _Ready()
         {
@@ -15,7 +16,7 @@ namespace SDTesting.Assets.Script.UI
 
         public void UpdateHeat(float heat, float penalty)
         {
-
+            heatInfo.Update((int)heat, penalty);
         }
 
         public void UpdateSpeed(float speed, int gear, float rpm)

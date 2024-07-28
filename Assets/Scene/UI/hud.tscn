@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://4egbl3ojx470"]
+
+[ext_resource type="Script" path="res://Assets/Script/UI/HUD.cs" id="1_1h6xg"]
+[ext_resource type="Script" path="res://Assets/Script/UI/SpeedInfo.cs" id="2_35xy4"]
+[ext_resource type="Script" path="res://Assets/Script/UI/HeatInfo.cs" id="3_48wfn"]
+
+[node name="HUD" type="Control" node_paths=PackedStringArray("speedInfo", "heatInfo")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1h6xg")
+speedInfo = NodePath("SpeedIndicator")
+heatInfo = NodePath("HeatIndicator")
+
+[node name="SpeedIndicator" type="Control" parent="." node_paths=PackedStringArray("speedLabel", "gearLabel", "rpmLabel")]
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -75.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("2_35xy4")
+speedLabel = NodePath("VBoxContainer/Speed")
+gearLabel = NodePath("VBoxContainer/Gear")
+rpmLabel = NodePath("VBoxContainer/RPM")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SpeedIndicator"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Speed" type="Label" parent="SpeedIndicator/VBoxContainer"]
+layout_mode = 2
+text = "Test"
+
+[node name="Gear" type="Label" parent="SpeedIndicator/VBoxContainer"]
+layout_mode = 2
+text = "Test"
+
+[node name="RPM" type="Label" parent="SpeedIndicator/VBoxContainer"]
+layout_mode = 2
+text = "Test"
+
+[node name="HeatIndicator" type="Control" parent="." node_paths=PackedStringArray("heatLabel", "penaltyLabel")]
+layout_mode = 1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_right = 100.0
+grow_vertical = 0
+script = ExtResource("3_48wfn")
+heatLabel = NodePath("VBoxContainer/Heat")
+penaltyLabel = NodePath("VBoxContainer/Penalty")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HeatIndicator"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 50.0
+
+[node name="Heat" type="Label" parent="HeatIndicator/VBoxContainer"]
+layout_mode = 2
+text = "Test"
+
+[node name="Penalty" type="Label" parent="HeatIndicator/VBoxContainer"]
+layout_mode = 2
+text = "Test"

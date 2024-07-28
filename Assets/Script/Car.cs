@@ -1,5 +1,6 @@
 using Godot;
 using SDTesting.Assets.Script;
+using SDTesting.Assets.Script.UI;
 using System;
 using System.Collections.Generic;
 
@@ -127,6 +128,10 @@ public partial class Car : VehicleBody3D
     {
         GearCheck();
         GD.Print($"RPM is {GetRPM()}, speed is {LinearVelocity.Length()}");
+
+        // Hud updates, may need to be moved eventually.
+        HUD.Instance.UpdateSpeed(LinearVelocity.Length(), gearIndex, GetRPM());
+        HUD.Instance.UpdateHeat(currentHeat, excessHeat);
     }
 
     void GearCheck()
