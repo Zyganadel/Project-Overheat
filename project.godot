@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="SDTesting"
+config/name="Project:Overheat"
 run/main_scene="res://Assets/Scene/Primary/main.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
