@@ -29,6 +29,7 @@ namespace SDTesting.Assets.Script.Managers
         {
             Car car = (Car)carScenes[currentCarIndex].Instantiate();
             GameManager.Instance.AddChild(car);
+            currentCar = car;
 
             car.Position = position;
             car.SetStartValues(radiators[currentRadiator], tires[currentTires], engines[currentEngines]);
