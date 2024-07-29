@@ -5,7 +5,7 @@ namespace SDTesting.Assets.Script.UI
 {
     public partial class Timer : Control
     {
-        [Export]Label timerLabel;
+        [Export] Label timerLabel;
 
         double time = 0;
 

@@ -11,6 +11,7 @@ namespace SDTesting.Assets.Script.Managers
         static string fileName = $"leaderboards/level{GameManager.Instance.currentMapIndex}";
         public static void SetTime(double time)
         {
+            Directory.CreateDirectory(dataFolder);
             if (!File.Exists(fileName)) { File.Create(fileName); }
 
             List<string> list = new List<string>(File.ReadAllLines(fileName));
