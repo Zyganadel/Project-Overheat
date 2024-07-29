@@ -28,7 +28,22 @@ namespace SDTesting.Assets.Script.Managers
             string[] leaderboardLines = new string[0];
 
             try { leaderboardLines = File.ReadAllLines(fileName); } catch (Exception e) { File.Create(fileName).Close(); }
-            return leaderboardLines;
+            List<string> list = new List<string>();
+
+            for (int i = 0; i < leaderboardLines.Length; i++)
+            {
+                float time = float.Parse(leaderboardLines[i].Substring(leaderboardLines[i].IndexOf(":" + 2)));
+
+                bool paste = true;
+                for(int j = 0; j < list.Count; j++)
+                {
+                    float time2 = float.Parse(list[i].Substring(list[i].IndexOf(":" + 2)));
+                    if(time > time2) { paste = false; list.Insert(j, leaderboardLines[i]); break; }
+                }
+                if (paste) { list.Add(leaderboardLines[i]); break; }
+            }
+
+            return list.ToArray();
         }
     }
 }
