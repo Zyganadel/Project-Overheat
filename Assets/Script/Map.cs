@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Godot;
+using SDTesting.Assets.Script.Managers;
 
 namespace SDTesting.Assets.Script
 {
-    internal class Map
+    internal partial class Map : Node3D
     {
+        [Export] Area3D endTrigger;
+        [Export] public Vector3 startPos;
+
+        public override void _Ready()
+        {
+            base._Ready();
+
+            endTrigger.BodyEntered += delegate { GameManager.Instance.State = GameState.Menu; };
+        }
     }
 }

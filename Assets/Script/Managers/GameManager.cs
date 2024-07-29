@@ -1,17 +1,12 @@
 ﻿using Godot;
-using SDTesting.Assets.Script.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SDTesting.Assets.Script.Managers
 {
     public enum GameState
     {
         Menu,
-        GameplayIntro,
+        GameplayPaused,
         Gameplay
     }
 
@@ -19,14 +14,62 @@ namespace SDTesting.Assets.Script.Managers
     {
         public static GameManager Instance { get; private set; }
 
-        [Export] UIManager UIMan;
+        public GameState State { get; set; }
+        GameState state;
 
-        [Export] PackedScene Car;
+        [Export] UIManager UIMan;
+        [Export] CarManager carManager;
         Car car;
 
-        [Export]PackedScene[] mapScenes;
+        [Export] PackedScene[] mapScenes;
+        int currentMapIndex = 0;
         Map currentMap;
 
+        void SetState(GameState state)
+        {
+            if (this.state != state)
+            {
+                this.state = state;
+                UpdateState(state);
+            }
+        }
 
+        void UpdateState(GameState state)
+        {
+            switch (state)
+            {
+                case GameState.Menu: MenuHelper(); break;
+                case GameState.GameplayPaused: GameplayPausedHelper(); break;
+                case GameState.Gameplay: GameplayHelper(); break;
+                default: throw new NotImplementedException();
+            }
+
+            void MenuHelper()
+            {
+                // Check if we've set menu states
+                if (UIMan.State != MenuState.Main) { UIMan.State = MenuState.Main; }
+
+                carManager.KillCar(); car = null;
+            }
+
+            void GameplayPausedHelper()
+            {
+
+            }
+
+            void GameplayHelper()
+            {
+                // Check if we set menu states
+                if (UIMan.State != MenuState.HUD) { UIMan.State = MenuState.HUD; }
+
+                currentMap = (Map)mapScenes[currentMapIndex].Instantiate();
+                car = carManager.SpawnCar(currentMap.startPos);
+            }
+        }
+
+        public override void _Ready()
+        {
+            base._Ready();
+        }
     }
 }

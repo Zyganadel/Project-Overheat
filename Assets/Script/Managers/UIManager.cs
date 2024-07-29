@@ -78,10 +78,13 @@ namespace SDTesting.Assets.Script.Managers
             switch (state)
             {
                 case MenuState.Main:
+                // This should also update GM.
                 case MenuState.CarSelect:
                 case MenuState.LevelSelect:
                 case MenuState.HUD:
+                // This should also update GM.
                 case MenuState.Paused:
+                // This should also update GM.
                 case MenuState.Leaderboard:
                 case MenuState.Options:
                 case MenuState.Credits:
@@ -146,6 +149,8 @@ namespace SDTesting.Assets.Script.Managers
 
                 Button backButton = (Button)c.GetNode("panel/container/mainmenu");
                 backButton.Pressed += delegate { Instance.MenuUpdate(MenuState.Main); };
+                Button resumeButton = (Button)c.GetNode("panel/container/resume");
+                resumeButton.Pressed += delegate { Instance.MenuUpdate(MenuState.HUD); };
             }
 
             public static void LeaderboardHelper()

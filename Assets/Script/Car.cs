@@ -63,6 +63,13 @@ public partial class Car : VehicleBody3D
         }
     }
 
+    public void SetStartValues(float cooling, float steering, float power)
+    {
+        this.cooling *= cooling;
+        this.steering *= steering;
+        baseEnginePower *= power;
+    }
+
     public override void _UnhandledInput(InputEvent ie)
     {
         if (ie is InputEventKey)
