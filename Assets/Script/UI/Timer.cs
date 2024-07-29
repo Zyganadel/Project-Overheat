@@ -5,6 +5,8 @@ namespace SDTesting.Assets.Script.UI
 {
     public partial class Timer : Control
     {
+        [Export]Label timerLabel;
+
         double time = 0;
 
         public override void _Process(double delta)
@@ -12,6 +14,8 @@ namespace SDTesting.Assets.Script.UI
             base._Process(delta);
 
             time += delta;
+
+            timerLabel.Text = time.ToString();
         }
 
         public double End()
