@@ -8,6 +8,7 @@ namespace SDTesting.Assets.Script.UI
 
         [Export] SpeedInfo speedInfo;
         [Export] HeatInfo heatInfo;
+        [Export] public Timer timer;
 
         public override void _Ready()
         {

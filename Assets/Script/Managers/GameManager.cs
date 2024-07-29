@@ -22,7 +22,7 @@ namespace SDTesting.Assets.Script.Managers
         Car car;
 
         [Export] PackedScene[] mapScenes;
-        int currentMapIndex = 0;
+        public int currentMapIndex = 0;
         Map currentMap;
 
         void SetState(GameState state)
