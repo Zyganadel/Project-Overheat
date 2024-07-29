@@ -18,7 +18,7 @@ material = SubResource("StandardMaterial3D_d1mnu")
 [node name="Map1" type="Node3D" node_paths=PackedStringArray("endTrigger")]
 script = ExtResource("1_xmwss")
 endTrigger = NodePath("Area3D")
-startPos = Vector3(-960, 22.5, 721.8)
+startPos = Vector3(-960, 23.5, 721.8)
 
 [node name="Map01" parent="." instance=ExtResource("2_rnw22")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)

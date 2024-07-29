@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://4cm2jgja2hoe"]
+[gd_scene load_steps=15 format=3 uid="uid://4cm2jgja2hoe"]
 
 [ext_resource type="Script" path="res://Assets/Script/Managers/GameManager.cs" id="1_t7wvy"]
 [ext_resource type="PackedScene" uid="uid://c7y3e716a5r2j" path="res://Assets/Scene/Prefab/car.tscn" id="1_x06g1"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bmqy1kuohnobu" path="res://Assets/Scene/UI/leaderboard.tscn" id="8_s2dcj"]
 [ext_resource type="PackedScene" uid="uid://1fawvbot7rsi" path="res://Assets/Scene/UI/options_menu.tscn" id="9_q24nd"]
 [ext_resource type="PackedScene" uid="uid://cov4onkxpatew" path="res://Assets/Scene/UI/credits.tscn" id="10_cixio"]
+[ext_resource type="PackedScene" uid="uid://bkuekdmqje0qe" path="res://Assets/Scene/Prefab/jeep.tscn" id="13_mh3rk"]
 
 [node name="Main" type="Node3D" node_paths=PackedStringArray("UIMan", "carManager")]
 script = ExtResource("1_t7wvy")
@@ -44,4 +45,4 @@ creditsScene = ExtResource("10_cixio")
 
 [node name="carman" type="Node" parent="."]
 script = ExtResource("4_vdh8t")
-carScenes = Array[PackedScene]([ExtResource("1_x06g1")])
+carScenes = Array[PackedScene]([ExtResource("13_mh3rk"), ExtResource("1_x06g1")])

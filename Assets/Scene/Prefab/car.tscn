@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://c7y3e716a5r2j"]
 
 [ext_resource type="Script" path="res://Assets/Script/Car.cs" id="1_06ayy"]
-[ext_resource type="Texture2D" uid="uid://8jqnshbptg02" path="res://Assets/Blend/textures/Car.png" id="2_p7eeg"]
+[ext_resource type="Texture2D" uid="uid://cmu8d7wmom2ps" path="res://Assets/Blend/textures/Car.png" id="2_p7eeg"]
 [ext_resource type="PackedScene" uid="uid://cqaeih7sc24qm" path="res://Assets/Scene/Prefab/tire_tracks.tscn" id="2_tjhiy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nrpam"]
