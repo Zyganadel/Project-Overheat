@@ -23,6 +23,7 @@ grow_vertical = 0
 text = "Back"
 
 [node name="times" type="Panel" parent="."]
+clip_contents = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.35
