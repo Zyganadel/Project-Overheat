@@ -46,9 +46,7 @@ grow_vertical = 2
 layout_mode = 2
 text = "Lead Designer: Milo Artemov
 Lead Programmer: NullkiaHSB
-Lead Artist: Milo Artemov
-Art and General Assistance:
-\"DK\"
+General Assistance: \"DK\"
 Music: Zipi"
 
 [node name="Label" type="Label" parent="names"]
