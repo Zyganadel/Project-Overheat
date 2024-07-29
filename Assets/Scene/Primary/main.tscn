@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://4cm2jgja2hoe"]
+[gd_scene load_steps=16 format=3 uid="uid://4cm2jgja2hoe"]
 
 [ext_resource type="Script" path="res://Assets/Script/Managers/GameManager.cs" id="1_t7wvy"]
 [ext_resource type="PackedScene" uid="uid://c7y3e716a5r2j" path="res://Assets/Scene/Prefab/car.tscn" id="1_x06g1"]
 [ext_resource type="PackedScene" uid="uid://bxdp44tsl07wv" path="res://Assets/Scene/Map/map_1.tscn" id="2_8xpr8"]
+[ext_resource type="PackedScene" uid="uid://b1nisooqr2ugj" path="res://Assets/Scene/Map/map_2.tscn" id="2_67hnn"]
 [ext_resource type="PackedScene" uid="uid://b5sru4focdyby" path="res://Assets/Scene/UI/main_menu.tscn" id="3_ngi51"]
 [ext_resource type="Script" path="res://Assets/Script/Managers/UIManager.cs" id="3_okx64"]
 [ext_resource type="PackedScene" uid="uid://4egbl3ojx470" path="res://Assets/Scene/UI/hud.tscn" id="4_6hp5f"]
@@ -19,7 +20,7 @@
 script = ExtResource("1_t7wvy")
 UIMan = NodePath("UI")
 carManager = NodePath("carman")
-mapScenes = Array[PackedScene]([ExtResource("2_8xpr8")])
+mapScenes = Array[PackedScene]([ExtResource("2_67hnn"), ExtResource("2_8xpr8")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
