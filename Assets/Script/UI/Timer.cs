@@ -1,5 +1,6 @@
 ﻿using Godot;
 using SDTesting.Assets.Script.Managers;
+using System;
 
 namespace SDTesting.Assets.Script.UI
 {
@@ -15,7 +16,7 @@ namespace SDTesting.Assets.Script.UI
 
             time += delta;
 
-            timerLabel.Text = time.ToString();
+            timerLabel.Text = MathF.Round((float)time, 2).ToString();
         }
 
         public double End()
@@ -25,7 +26,7 @@ namespace SDTesting.Assets.Script.UI
 
         public override void _ExitTree()
         {
-            LeaderboardManager.SetTime(time);
+            LeaderboardManager.SetTime(MathF.Round((float)time, 2));
         }
     }
 }
