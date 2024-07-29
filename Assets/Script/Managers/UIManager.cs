@@ -183,6 +183,8 @@ namespace SDTesting.Assets.Script.Managers
 
                 Button backButton = (Button)c.GetNode("back");
                 backButton.Pressed += delegate { Instance.State = MenuState.Main; };
+                VBoxContainer container = (VBoxContainer)c.GetNode("times/container");
+                LeaderboardManager.ListTimes(container);
             }
 
             public static void OptionsHelper()

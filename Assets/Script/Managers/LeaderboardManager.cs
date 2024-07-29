@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Godot;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -35,15 +36,25 @@ namespace SDTesting.Assets.Script.Managers
                 float time = float.Parse(leaderboardLines[i].Substring(leaderboardLines[i].IndexOf(":" + 2)));
 
                 bool paste = true;
-                for(int j = 0; j < list.Count; j++)
+                for (int j = 0; j < list.Count; j++)
                 {
                     float time2 = float.Parse(list[i].Substring(list[i].IndexOf(":" + 2)));
-                    if(time > time2) { paste = false; list.Insert(j, leaderboardLines[i]); break; }
+                    if (time > time2) { paste = false; list.Insert(j, leaderboardLines[i]); break; }
                 }
                 if (paste) { list.Add(leaderboardLines[i]); break; }
             }
 
             return list.ToArray();
+        }
+
+        public static void ListTimes(Control parent)
+        {
+            foreach (string line in GetTimes())
+            {
+                Label label = new Label();
+                parent.AddChild(label);
+                label.Text = line;
+            }
         }
     }
 }
