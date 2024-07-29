@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dj5ej5banahuo"]
+[gd_scene load_steps=2 format=3 uid="uid://dj5ej5banahuo"]
+
+[ext_resource type="Texture2D" uid="uid://dn831lrv8i42c" path="res://Assets/Images/ClimbstonePatroller.png" id="1_f4a7a"]
 
 [node name="carSelect" type="Control"]
 layout_mode = 3
@@ -17,6 +19,54 @@ anchor_right = 0.65
 anchor_bottom = 0.75
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="selected"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+text = "Car Select"
+
+[node name="Control" type="Control" parent="selected"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -125.0
+offset_right = 125.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="selected/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.9
+grow_horizontal = 2
+texture = ExtResource("1_f4a7a")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Name" type="Label" parent="selected/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Climbstone Patroller"
+horizontal_alignment = 1
 
 [node name="next" type="Button" parent="."]
 layout_mode = 1
