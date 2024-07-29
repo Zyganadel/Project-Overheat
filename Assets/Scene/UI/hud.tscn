@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://4egbl3ojx470"]
+[gd_scene load_steps=8 format=3 uid="uid://4egbl3ojx470"]
 
 [ext_resource type="Script" path="res://Assets/Script/UI/HUD.cs" id="1_1h6xg"]
 [ext_resource type="Script" path="res://Assets/Script/UI/SpeedInfo.cs" id="2_35xy4"]
 [ext_resource type="Script" path="res://Assets/Script/UI/HeatInfo.cs" id="3_48wfn"]
 [ext_resource type="Script" path="res://Assets/Script/UI/Timer.cs" id="4_a0b46"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wxmar"]
+font_color = Color(0.85098, 0.227451, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0ka3x"]
+font_color = Color(0.768627, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_i5gto"]
+font_color = Color(0.729412, 0.117647, 0.117647, 1)
 
 [node name="HUD" type="Control" node_paths=PackedStringArray("speedInfo", "heatInfo", "timer")]
 layout_mode = 3
@@ -73,10 +82,12 @@ offset_bottom = 50.0
 [node name="Heat" type="Label" parent="HeatIndicator/VBoxContainer"]
 layout_mode = 2
 text = "Test"
+label_settings = SubResource("LabelSettings_wxmar")
 
 [node name="Penalty" type="Label" parent="HeatIndicator/VBoxContainer"]
 layout_mode = 2
 text = "Test"
+label_settings = SubResource("LabelSettings_0ka3x")
 
 [node name="Timer" type="Control" parent="." node_paths=PackedStringArray("timerLabel")]
 layout_mode = 1
@@ -100,5 +111,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Test"
+label_settings = SubResource("LabelSettings_i5gto")
 horizontal_alignment = 1
 vertical_alignment = 1
