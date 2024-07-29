@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using System;
 
 namespace SDTesting.Assets.Script.Managers
@@ -62,7 +62,7 @@ namespace SDTesting.Assets.Script.Managers
                 // Check if we set menu states
                 if (UIMan.State != MenuState.HUD) { UIMan.State = MenuState.HUD; }
 
-                currentMap = (Map)mapScenes[currentMapIndex].Instantiate();
+                currentMap = (Map)mapScenes[currentMapIndex].Instantiate(); AddChild(currentMap);
                 car = carManager.SpawnCar(currentMap.startPos);
             }
         }

@@ -12,7 +12,9 @@ namespace SDTesting.Assets.Script
         {
             base._Ready();
 
-            endTrigger.BodyEntered += delegate { GameManager.Instance.State = GameState.Menu; };
+            endTrigger.BodyEntered += ExitLevel;
+
+            void ExitLevel(Node3D node) { GameManager.Instance.State = GameState.Menu; }
         }
     }
 }
