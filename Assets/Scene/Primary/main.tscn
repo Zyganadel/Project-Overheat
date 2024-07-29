@@ -1,29 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://4cm2jgja2hoe"]
+[gd_scene load_steps=13 format=3 uid="uid://4cm2jgja2hoe"]
 
+[ext_resource type="Script" path="res://Assets/Script/Managers/GameManager.cs" id="1_t7wvy"]
 [ext_resource type="PackedScene" uid="uid://c7y3e716a5r2j" path="res://Assets/Scene/Prefab/car.tscn" id="1_x06g1"]
-[ext_resource type="Script" path="res://Assets/Script/UI/UIMan.cs" id="3_okx64"]
-[ext_resource type="PackedScene" uid="uid://unb0qj0w4wm4" path="res://Assets/Blend/TempTerrain.blend" id="3_tlx4k"]
+[ext_resource type="PackedScene" uid="uid://b5sru4focdyby" path="res://Assets/Scene/UI/main_menu.tscn" id="3_ngi51"]
+[ext_resource type="Script" path="res://Assets/Script/Managers/UIManager.cs" id="3_okx64"]
 [ext_resource type="PackedScene" uid="uid://4egbl3ojx470" path="res://Assets/Scene/UI/hud.tscn" id="4_6hp5f"]
+[ext_resource type="PackedScene" uid="uid://dj5ej5banahuo" path="res://Assets/Scene/UI/car_select.tscn" id="4_suqvb"]
+[ext_resource type="Script" path="res://Assets/Script/Managers/CarManager.cs" id="4_vdh8t"]
+[ext_resource type="PackedScene" uid="uid://c5cn7sry1vr7x" path="res://Assets/Scene/UI/level_select.tscn" id="5_e3s3y"]
+[ext_resource type="PackedScene" uid="uid://dniptx0td4keq" path="res://Assets/Scene/UI/pause_menu.tscn" id="7_iyhib"]
+[ext_resource type="PackedScene" uid="uid://bmqy1kuohnobu" path="res://Assets/Scene/UI/leaderboard.tscn" id="8_s2dcj"]
+[ext_resource type="PackedScene" uid="uid://1fawvbot7rsi" path="res://Assets/Scene/UI/options_menu.tscn" id="9_q24nd"]
+[ext_resource type="PackedScene" uid="uid://cov4onkxpatew" path="res://Assets/Scene/UI/credits.tscn" id="10_cixio"]
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("UIMan", "carManager")]
+script = ExtResource("1_t7wvy")
+UIMan = NodePath("UI")
+carManager = NodePath("carman")
+mapScenes = Array[PackedScene]([])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 0.731925, 0.681385, 0, -0.681385, 0.731925, 0, 10.3323, 0)
-
-[node name="TempTerrain" parent="." instance=ExtResource("3_tlx4k")]
-transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
-
-[node name="Main" parent="." instance=ExtResource("1_x06g1")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 243, 0.6, 234)
-baseWheelFriction = 2.5
-rearWheelFrictionReduc = 0.25
-brakeFrictionReduc = 1.5
-baseEnginePower = 150.0
-sdModifier = 0.0
-heatPerRPMSecond = 25.0
-cooling = 1.0
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -33,7 +32,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_okx64")
+mainMenuScene = ExtResource("3_ngi51")
+carSelectScene = ExtResource("4_suqvb")
+levelSelectScene = ExtResource("5_e3s3y")
 hudScene = ExtResource("4_6hp5f")
+pauseMenuScene = ExtResource("7_iyhib")
+leaderboardScene = ExtResource("8_s2dcj")
+optionsMenuScene = ExtResource("9_q24nd")
+creditsScene = ExtResource("10_cixio")
 
-[node name="HUD" parent="UI" instance=ExtResource("4_6hp5f")]
-layout_mode = 1
+[node name="carman" type="Node" parent="."]
+script = ExtResource("4_vdh8t")
+carScenes = Array[PackedScene]([ExtResource("1_x06g1")])
