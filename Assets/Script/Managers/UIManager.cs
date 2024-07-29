@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using SDTesting.Assets.Script.UI;
 using System;
 
@@ -25,7 +25,7 @@ namespace SDTesting.Assets.Script.Managers
 
         UIInputManager inputManager;
 
-        public MenuState State { get => state; set => state = value; }
+        public MenuState State { get => state; set { SetState(value); } }
         private MenuState state;
 
         [Export] PackedScene mainMenuScene;
@@ -54,7 +54,10 @@ namespace SDTesting.Assets.Script.Managers
             UIHelper.Init();
             inputManager = new UIInputManager(); AddChild(inputManager);
 
-            State = MenuState.Main;
+            State = MenuState.Main; MenuUpdate(MenuState.Main);
+
+            PrintOrphanNodes();
+            PrintTree();
         }
 
         public override void _UnhandledKeyInput(InputEvent keyEvent)
@@ -76,6 +79,8 @@ namespace SDTesting.Assets.Script.Managers
         void MenuUpdate(MenuState state)
         {
             UIHelper.HideAll();
+
+            GD.Print($"Attempting setstate {state}");
 
             switch (state)
             {
@@ -116,7 +121,10 @@ namespace SDTesting.Assets.Script.Managers
 
             public static void MainHelper()
             {
-                if (GameManager.Instance.State != GameState.Menu) { GameManager.Instance.State = GameState.Menu; }
+                if (GameManager.Instance != null)
+                {
+                    if (GameManager.Instance.State != GameState.Menu) { GameManager.Instance.State = GameState.Menu; }
+                }
                 Control c = (Control)Instance.mainMenuScene.Instantiate();
                 Instance.mainMenu = c; Instance.AddChild(c);
 
