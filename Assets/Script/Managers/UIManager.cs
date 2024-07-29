@@ -118,7 +118,7 @@ namespace SDTesting.Assets.Script.Managers
             {
                 if (GameManager.Instance.State != GameState.Menu) { GameManager.Instance.State = GameState.Menu; }
                 Control c = (Control)Instance.mainMenuScene.Instantiate();
-                Instance.mainMenu = c;
+                Instance.mainMenu = c; Instance.AddChild(c);
 
                 // Button things here.
                 Button play = (Button)c.GetNode("panel/container/play");
@@ -128,7 +128,7 @@ namespace SDTesting.Assets.Script.Managers
             public static void CarHelper()
             {
                 Control c = (Control)Instance.carSelectScene.Instantiate();
-                Instance.carSelect = c;
+                Instance.carSelect = c; Instance.AddChild(c);
 
                 // button things
                 Button backButton = (Button)c.GetNode("back");
@@ -140,7 +140,7 @@ namespace SDTesting.Assets.Script.Managers
             public static void LevelHelper()
             {
                 Control c = (Control)Instance.levelSelectScene.Instantiate();
-                Instance.levelSelect = c;
+                Instance.levelSelect = c; Instance.AddChild(c);
 
                 Button backButton = (Button)c.GetNode("back");
                 backButton.Pressed += delegate { Instance.State = MenuState.CarSelect; };
@@ -152,7 +152,7 @@ namespace SDTesting.Assets.Script.Managers
             {
                 if (GameManager.Instance.State != GameState.GameplayPaused) { GameManager.Instance.State = GameState.GameplayPaused; }
                 Control c = (Control)Instance.pauseMenuScene.Instantiate();
-                Instance.pauseMenu = c;
+                Instance.pauseMenu = c; Instance.AddChild(c);
 
                 Button backButton = (Button)c.GetNode("panel/container/mainmenu");
                 backButton.Pressed += delegate { Instance.State = MenuState.Main; };
@@ -164,13 +164,13 @@ namespace SDTesting.Assets.Script.Managers
             {
                 if (GameManager.Instance.State != GameState.Gameplay) { GameManager.Instance.State = GameState.Gameplay; }
                 HUD h = (HUD)Instance.hudScene.Instantiate();
-                Instance.hud = h;
+                Instance.hud = h; Instance.AddChild(h);
             }
 
             public static void LeaderboardHelper()
             {
                 Control c = (Control)Instance.leaderboardScene.Instantiate();
-                Instance.leaderboard = c;
+                Instance.leaderboard = c; Instance.AddChild(c);
 
                 Button backButton = (Button)c.GetNode("back");
                 backButton.Pressed += delegate { Instance.State = MenuState.Main; };
@@ -179,7 +179,7 @@ namespace SDTesting.Assets.Script.Managers
             public static void OptionsHelper()
             {
                 Control c = (Control)Instance.optionsMenuScene.Instantiate();
-                Instance.optionsMenu = c;
+                Instance.optionsMenu = c; Instance.AddChild(c);
 
                 Button backButton = (Button)c.GetNode("back");
                 backButton.Pressed += delegate { Instance.State = MenuState.Main; };
@@ -188,7 +188,7 @@ namespace SDTesting.Assets.Script.Managers
             public static void CreditsHelper()
             {
                 Control c = (Control)Instance.creditsScene.Instantiate();
-                Instance.credits = c;
+                Instance.credits = c; Instance.AddChild(c);
 
                 Button backButton = (Button)c.GetNode("back");
                 backButton.Pressed += delegate { Instance.State = MenuState.Main; };
