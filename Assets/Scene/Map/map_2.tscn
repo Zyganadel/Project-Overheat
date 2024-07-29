@@ -17,7 +17,7 @@ size = Vector3(10, 3, 15)
 [node name="Node3D" type="Node3D" node_paths=PackedStringArray("endTrigger")]
 script = ExtResource("1_t52va")
 endTrigger = NodePath("Area3D")
-startPos = Vector3(-475.8, 0, 337.5)
+startPos = Vector3(-951.3, 0.1, 678)
 
 [node name="map01topob_r1d_export_final" parent="." instance=ExtResource("2_hi06t")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
