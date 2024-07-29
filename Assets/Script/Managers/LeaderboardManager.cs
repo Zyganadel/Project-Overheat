@@ -33,15 +33,20 @@ namespace SDTesting.Assets.Script.Managers
 
             for (int i = 0; i < leaderboardLines.Length; i++)
             {
-                float time = float.Parse(leaderboardLines[i].Substring(leaderboardLines[i].IndexOf(":" + 2)));
+                GD.Print(leaderboardLines[i].IndexOf(": ") + 2);
+                GD.Print(leaderboardLines[i]);
+                float time = float.Parse(leaderboardLines[i].Substring(leaderboardLines[i].IndexOf(": ") + 2));
 
                 bool paste = true;
-                for (int j = 0; j < list.Count; j++)
+                if (list.Count != 0)
                 {
-                    float time2 = float.Parse(list[i].Substring(list[i].IndexOf(":" + 2)));
-                    if (time > time2) { paste = false; list.Insert(j, leaderboardLines[i]); break; }
+                    for (int j = 0; j < list.Count; j++)
+                    {
+                        float time2 = float.Parse(list[j].Substring(list[j].IndexOf(": ") + 2));
+                        if (time > time2) { paste = false; list.Insert(j, leaderboardLines[i]); break; }
+                    }
                 }
-                if (paste) { list.Add(leaderboardLines[i]); break; }
+                if (paste) { list.Add(leaderboardLines[i]); }
             }
 
             return list.ToArray();
@@ -49,6 +54,7 @@ namespace SDTesting.Assets.Script.Managers
 
         public static void ListTimes(Control parent)
         {
+            GD.Print(GetTimes().Length);
             foreach (string line in GetTimes())
             {
                 Label label = new Label();
