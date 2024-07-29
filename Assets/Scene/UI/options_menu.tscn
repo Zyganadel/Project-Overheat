@@ -22,6 +22,53 @@ tab_alignment = 1
 [node name="controls" type="Control" parent="container"]
 layout_mode = 2
 
+[node name="Action" type="VBoxContainer" parent="container/controls"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = -25.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="container/controls/Action"]
+layout_mode = 2
+text = "Steering"
+
+[node name="Label2" type="Label" parent="container/controls/Action"]
+layout_mode = 2
+text = "Accelerate"
+
+[node name="Label3" type="Label" parent="container/controls/Action"]
+layout_mode = 2
+text = "Brake"
+
+[node name="Key" type="VBoxContainer" parent="container/controls"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 25.0
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="container/controls/Key"]
+layout_mode = 2
+text = "A,D, Left, Right"
+
+[node name="Label2" type="Label" parent="container/controls/Key"]
+layout_mode = 2
+text = "W, Up"
+
+[node name="Label3" type="Label" parent="container/controls/Key"]
+layout_mode = 2
+text = "S, Space, Down"
+
 [node name="options" type="Control" parent="container"]
 visible = false
 layout_mode = 2
