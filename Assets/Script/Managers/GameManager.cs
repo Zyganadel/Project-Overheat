@@ -14,7 +14,7 @@ namespace SDTesting.Assets.Script.Managers
     {
         public static GameManager Instance { get; private set; }
 
-        public GameState State { get; set; }
+        public GameState State { get => state; set { SetState(value); } }
         GameState state;
 
         [Export] UIManager UIMan;
@@ -70,6 +70,8 @@ namespace SDTesting.Assets.Script.Managers
         public override void _Ready()
         {
             base._Ready();
+            Instance = this;
+            State = GameState.Menu;
         }
     }
 }

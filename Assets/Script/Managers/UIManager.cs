@@ -109,14 +109,14 @@ namespace SDTesting.Assets.Script.Managers
             // This should be updated to always queuefree all UI elements.
             public static void HideAll()
             {
-                Instance.mainMenu.QueueFree();
-                Instance.carSelect.QueueFree();
-                Instance.levelSelect.QueueFree();
-                Instance.hud.QueueFree();
-                Instance.pauseMenu.QueueFree();
-                Instance.leaderboard.QueueFree();
-                Instance.optionsMenu.QueueFree();
-                Instance.credits.QueueFree();
+                try { Instance.mainMenu.QueueFree(); } catch (Exception) { }
+                try { Instance.carSelect.QueueFree(); } catch (Exception) { }
+                try { Instance.levelSelect.QueueFree(); } catch (Exception) { }
+                try { Instance.hud.QueueFree(); } catch (Exception) { }
+                try { Instance.pauseMenu.QueueFree(); } catch (Exception) { }
+                try { Instance.leaderboard.QueueFree(); } catch (Exception) { }
+                try { Instance.optionsMenu.QueueFree(); } catch (Exception) { }
+                try { Instance.credits.QueueFree(); } catch (Exception) { }
             }
 
             public static void MainHelper()
@@ -126,7 +126,7 @@ namespace SDTesting.Assets.Script.Managers
                     if (GameManager.Instance.State != GameState.Menu) { GameManager.Instance.State = GameState.Menu; }
                 }
                 Control c = (Control)Instance.mainMenuScene.Instantiate();
-                Instance.mainMenu = c; Instance.AddChild(c);
+                Instance.mainMenu = c; Instance.AddChild(c); c.PrintTree();
 
                 // Button things here.
                 Button play = (Button)c.GetNode("panel/container/play");
@@ -136,23 +136,23 @@ namespace SDTesting.Assets.Script.Managers
             public static void CarHelper()
             {
                 Control c = (Control)Instance.carSelectScene.Instantiate();
-                Instance.carSelect = c; Instance.AddChild(c);
+                Instance.carSelect = c; Instance.AddChild(c); c.PrintTree();
 
                 // button things
                 Button backButton = (Button)c.GetNode("back");
                 backButton.Pressed += delegate { Instance.State = MenuState.Main; };
-                Button next = (Button)c.GetNode("panel/container/next");
+                Button next = (Button)c.GetNode("next");
                 next.Pressed += delegate { Instance.State = MenuState.LevelSelect; };
             }
 
             public static void LevelHelper()
             {
                 Control c = (Control)Instance.levelSelectScene.Instantiate();
-                Instance.levelSelect = c; Instance.AddChild(c);
+                Instance.levelSelect = c; Instance.AddChild(c); c.PrintTree();
 
                 Button backButton = (Button)c.GetNode("back");
                 backButton.Pressed += delegate { Instance.State = MenuState.CarSelect; };
-                Button play = (Button)c.GetNode("panel/container/play");
+                Button play = (Button)c.GetNode("next");
                 play.Pressed += delegate { Instance.State = MenuState.HUD; };
             }
 
@@ -160,7 +160,7 @@ namespace SDTesting.Assets.Script.Managers
             {
                 if (GameManager.Instance.State != GameState.GameplayPaused) { GameManager.Instance.State = GameState.GameplayPaused; }
                 Control c = (Control)Instance.pauseMenuScene.Instantiate();
-                Instance.pauseMenu = c; Instance.AddChild(c);
+                Instance.pauseMenu = c; Instance.AddChild(c); c.PrintTree();
 
                 Button backButton = (Button)c.GetNode("panel/container/mainmenu");
                 backButton.Pressed += delegate { Instance.State = MenuState.Main; };
@@ -178,7 +178,7 @@ namespace SDTesting.Assets.Script.Managers
             public static void LeaderboardHelper()
             {
                 Control c = (Control)Instance.leaderboardScene.Instantiate();
-                Instance.leaderboard = c; Instance.AddChild(c);
+                Instance.leaderboard = c; Instance.AddChild(c); c.PrintTree();
 
                 Button backButton = (Button)c.GetNode("back");
                 backButton.Pressed += delegate { Instance.State = MenuState.Main; };
@@ -187,7 +187,7 @@ namespace SDTesting.Assets.Script.Managers
             public static void OptionsHelper()
             {
                 Control c = (Control)Instance.optionsMenuScene.Instantiate();
-                Instance.optionsMenu = c; Instance.AddChild(c);
+                Instance.optionsMenu = c; Instance.AddChild(c); c.PrintTree();
 
                 Button backButton = (Button)c.GetNode("back");
                 backButton.Pressed += delegate { Instance.State = MenuState.Main; };
@@ -196,7 +196,7 @@ namespace SDTesting.Assets.Script.Managers
             public static void CreditsHelper()
             {
                 Control c = (Control)Instance.creditsScene.Instantiate();
-                Instance.credits = c; Instance.AddChild(c);
+                Instance.credits = c; Instance.AddChild(c); c.PrintTree();
 
                 Button backButton = (Button)c.GetNode("back");
                 backButton.Pressed += delegate { Instance.State = MenuState.Main; };
