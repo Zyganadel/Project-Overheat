@@ -53,6 +53,8 @@ namespace SDTesting.Assets.Script.Managers
             // Other stuff.
             UIHelper.Init();
             inputManager = new UIInputManager(); AddChild(inputManager);
+
+            State = MenuState.Main;
         }
 
         public override void _UnhandledKeyInput(InputEvent keyEvent)
@@ -77,17 +79,14 @@ namespace SDTesting.Assets.Script.Managers
 
             switch (state)
             {
-                case MenuState.Main:
-                // This should also update GM.
-                case MenuState.CarSelect:
-                case MenuState.LevelSelect:
-                case MenuState.HUD:
-                // This should also update GM.
-                case MenuState.Paused:
-                // This should also update GM.
-                case MenuState.Leaderboard:
-                case MenuState.Options:
-                case MenuState.Credits:
+                case MenuState.Main: UIHelper.MainHelper(); break;                  // This should also update GM.
+                case MenuState.CarSelect: UIHelper.CarHelper(); break;
+                case MenuState.LevelSelect: UIHelper.LevelHelper(); break;
+                case MenuState.HUD: UIHelper.HudHelper(); break;                    // This should also update GM.
+                case MenuState.Paused: UIHelper.PauseHelper(); break;               // This should also update GM.
+                case MenuState.Leaderboard: UIHelper.LeaderboardHelper(); break;
+                case MenuState.Options: UIHelper.OptionsHelper(); break;
+                case MenuState.Credits: UIHelper.CreditsHelper(); break;
                 default: throw new NotImplementedException();
             }
         }
@@ -117,10 +116,13 @@ namespace SDTesting.Assets.Script.Managers
 
             public static void MainHelper()
             {
+                if (GameManager.Instance.State != GameState.Menu) { GameManager.Instance.State = GameState.Menu; }
                 Control c = (Control)Instance.mainMenuScene.Instantiate();
                 Instance.mainMenu = c;
 
                 // Button things here.
+                Button play = (Button)c.GetNode("panel/container/play");
+                play.Pressed += delegate { Instance.State = MenuState.CarSelect; };
             }
 
             public static void CarHelper()
@@ -130,7 +132,9 @@ namespace SDTesting.Assets.Script.Managers
 
                 // button things
                 Button backButton = (Button)c.GetNode("back");
-                backButton.Pressed += delegate { Instance.MenuUpdate(MenuState.Main); };
+                backButton.Pressed += delegate { Instance.State = MenuState.Main; };
+                Button next = (Button)c.GetNode("panel/container/next");
+                next.Pressed += delegate { Instance.State = MenuState.LevelSelect; };
             }
 
             public static void LevelHelper()
@@ -139,18 +143,28 @@ namespace SDTesting.Assets.Script.Managers
                 Instance.levelSelect = c;
 
                 Button backButton = (Button)c.GetNode("back");
-                backButton.Pressed += delegate { Instance.MenuUpdate(MenuState.CarSelect); };
+                backButton.Pressed += delegate { Instance.State = MenuState.CarSelect; };
+                Button play = (Button)c.GetNode("panel/container/play");
+                play.Pressed += delegate { Instance.State = MenuState.HUD; };
             }
 
             public static void PauseHelper()
             {
+                if (GameManager.Instance.State != GameState.GameplayPaused) { GameManager.Instance.State = GameState.GameplayPaused; }
                 Control c = (Control)Instance.pauseMenuScene.Instantiate();
                 Instance.pauseMenu = c;
 
                 Button backButton = (Button)c.GetNode("panel/container/mainmenu");
-                backButton.Pressed += delegate { Instance.MenuUpdate(MenuState.Main); };
+                backButton.Pressed += delegate { Instance.State = MenuState.Main; };
                 Button resumeButton = (Button)c.GetNode("panel/container/resume");
-                resumeButton.Pressed += delegate { Instance.MenuUpdate(MenuState.HUD); };
+                resumeButton.Pressed += delegate { Instance.State = MenuState.HUD; };
+            }
+
+            public static void HudHelper()
+            {
+                if (GameManager.Instance.State != GameState.Gameplay) { GameManager.Instance.State = GameState.Gameplay; }
+                HUD h = (HUD)Instance.hudScene.Instantiate();
+                Instance.hud = h;
             }
 
             public static void LeaderboardHelper()
@@ -159,7 +173,7 @@ namespace SDTesting.Assets.Script.Managers
                 Instance.leaderboard = c;
 
                 Button backButton = (Button)c.GetNode("back");
-                backButton.Pressed += delegate { Instance.MenuUpdate(MenuState.Main); };
+                backButton.Pressed += delegate { Instance.State = MenuState.Main; };
             }
 
             public static void OptionsHelper()
@@ -168,7 +182,7 @@ namespace SDTesting.Assets.Script.Managers
                 Instance.optionsMenu = c;
 
                 Button backButton = (Button)c.GetNode("back");
-                backButton.Pressed += delegate { Instance.MenuUpdate(MenuState.Main); };
+                backButton.Pressed += delegate { Instance.State = MenuState.Main; };
             }
 
             public static void CreditsHelper()
@@ -177,7 +191,7 @@ namespace SDTesting.Assets.Script.Managers
                 Instance.credits = c;
 
                 Button backButton = (Button)c.GetNode("back");
-                backButton.Pressed += delegate { Instance.MenuUpdate(MenuState.Main); };
+                backButton.Pressed += delegate { Instance.State = MenuState.Main; };
             }
         }
     }

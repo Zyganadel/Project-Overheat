@@ -7,6 +7,8 @@ namespace SDTesting.Assets.Script.Managers
     /// </summary>
     internal partial class CarManager : Node
     {
+        public static CarManager Instance { get; private set; }
+
         [Export] PackedScene[] carScenes;
         int currentCarIndex;
         Car currentCar;
@@ -32,6 +34,12 @@ namespace SDTesting.Assets.Script.Managers
             car.SetStartValues(radiators[currentRadiator], tires[currentTires], engines[currentEngines]);
 
             return car;
+        }
+
+        public override void _Ready()
+        {
+            base._Ready();
+            Instance = this;
         }
     }
 }
