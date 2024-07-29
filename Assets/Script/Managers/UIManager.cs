@@ -60,13 +60,6 @@ namespace SDTesting.Assets.Script.Managers
             PrintTree();
         }
 
-        public override void _UnhandledKeyInput(InputEvent keyEvent)
-        {
-            base._UnhandledKeyInput(keyEvent);
-
-            if (Input.IsActionJustPressed("pause")) { State = MenuState.Paused; }
-        }
-
         private void SetState(MenuState state)
         {
             if (state != this.state)
