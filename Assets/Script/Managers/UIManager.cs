@@ -124,6 +124,14 @@ namespace SDTesting.Assets.Script.Managers
                 // Button things here.
                 Button play = (Button)c.GetNode("panel/container/play");
                 play.Pressed += delegate { Instance.State = MenuState.CarSelect; };
+                Button leaderboards = (Button)c.GetNode("panel/container/leaderboards");
+                leaderboards.Pressed += delegate { Instance.State = MenuState.Leaderboard; };
+                Button options = (Button)c.GetNode("panel/container/options");
+                options.Pressed += delegate { Instance.State = MenuState.Options; };
+                Button credits = (Button)c.GetNode("panel/container/credits");
+                credits.Pressed += delegate { Instance.State = MenuState.Credits; };
+                Button quit = (Button)c.GetNode("panel/container/quit");
+                quit.Pressed += delegate { Instance.GetTree().Quit(); };
             }
 
             public static void CarHelper()
