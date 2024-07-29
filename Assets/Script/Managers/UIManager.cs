@@ -192,6 +192,10 @@ namespace SDTesting.Assets.Script.Managers
 
                 Button backButton = (Button)c.GetNode("back");
                 backButton.Pressed += delegate { Instance.State = MenuState.Main; };
+                LineEdit lineEdit = (LineEdit)c.GetNode("container/options/container/nameField");
+                lineEdit.TextChanged += OnTextChange;
+
+                void OnTextChange(string text) { LeaderboardManager.playerName = text; }
             }
 
             public static void CreditsHelper()
