@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1nisooqr2ugj"]
+[gd_scene load_steps=7 format=3 uid="uid://b1nisooqr2ugj"]
 
 [ext_resource type="Script" path="res://Assets/Script/Map.cs" id="1_t52va"]
 [ext_resource type="PackedScene" uid="uid://ixoty1v2mugd" path="res://Assets/Blend/map01topob_r1d_export_final.glb" id="2_hi06t"]
+[ext_resource type="AudioStream" uid="uid://d367wh6ttkfms" path="res://Assets/Sound/Through the wind.mp3" id="3_fouk0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6tiup"]
 size = Vector3(10, 3, 15)
@@ -30,3 +31,8 @@ shape = SubResource("BoxShape3D_6tiup")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
 mesh = SubResource("BoxMesh_dvys7")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fouk0")
+volume_db = -6.0
+autoplay = true

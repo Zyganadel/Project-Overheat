@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d367wh6ttkfms"
+path="res://.godot/imported/Through the wind.mp3-9a13012453024ad8ab020c804e9ce609.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Through the wind.mp3"
+dest_files=["res://.godot/imported/Through the wind.mp3-9a13012453024ad8ab020c804e9ce609.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
