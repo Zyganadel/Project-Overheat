@@ -1,4 +1,5 @@
 ﻿using Godot;
+using SDTesting.Assets.Script.Managers;
 
 namespace SDTesting.Assets.Script.UI
 {
@@ -16,6 +17,11 @@ namespace SDTesting.Assets.Script.UI
         public double End()
         {
             return time;
+        }
+
+        public override void _ExitTree()
+        {
+            LeaderboardManager.SetTime(time);
         }
     }
 }
